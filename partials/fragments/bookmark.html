@@ -1,0 +1,28 @@
+
+<div class="bookmarkItem row " ng-repeat="bookmark in bookmarksArray">
+   <div class="col-sm-10 noPaddingBootstrap">
+       <div>
+         <a ng-href="#!/detail/?id={{ bookmark.id }}" class="titleBookMark">
+            {{ bookmark.title }}
+         </a>
+       </div>
+       <div class="row tagsContainer">
+         <span class="bookmarkTag label label-info" ng-repeat="bookmarkTag in bookmark.tags">
+            {{ bookmarkTag.name }}
+         </span>
+       </div>
+       <div class="row">
+         <small>
+             <em>
+               By {{ bookmark.name }}
+               <span>{{ bookmark.created }}</span>
+             </em>
+         </small>
+       </div>
+   </div>
+   <div class="col-sm-2 indicatorsBookmark noPaddingBootstrap">
+      <span class="label label-default">Links: {{ bookmark.linksCount }}</span>
+      <!--<button type="button" class="btn btn-warning btn-xs">Report this</button>-->
+   </div>
+</div>   
+

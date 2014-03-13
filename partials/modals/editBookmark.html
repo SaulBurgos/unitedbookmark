@@ -1,0 +1,32 @@
+ <div class="modal-header">
+    <h4 class="modal-title"> {{ modalContent.title }} </h4>
+</div>
+<div class="modal-body">
+    <form role="form" name="editBookmarkForm" ng-submit="updateBookmark()">
+        <div class="form-group" ng-class="isValid(editBookmarkForm.titleBookmark)">
+           <label for="exampleInputEmail1">Descriptive title at least 20 characters</label>
+           <input type="text" ng-model="modalContent.newTitleBookmark" name="titleBookmark"  
+           class="form-control" placeholder="Title of your bookmark" required ng-minlength="20"/>
+        </div>
+        <div class="form-group">
+           <label>Some description (300 max) optional</label>
+           <textarea class="form-control" rows="3"  
+               placeholder="Description" ng-maxlength="300" ng-model="modalContent.newDescription" 
+               check-Limit-Characters onpaste="return false;" ></textarea>
+        </div>
+        <div class="form-group">
+              <label>New tags</label>
+              <tags-input ng-model="modalContent.newTags"  placeholder="New tags for your bookmark" 
+               add-On-Space="true" max-Length="25">
+                  <auto-complete source="getTags($query)" debounce-Delay="500"></auto-complete>
+              </tags-input>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+     </form>
+     <div class="alert alert-danger" ng-show="modalContent.showErrorMsg">
+        Error updating bookmark, please try again.
+     </div>
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-default btn-sm" ng-click="closeModal()">Close</button>
+</div>

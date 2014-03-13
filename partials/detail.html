@@ -1,0 +1,116 @@
+
+<div class="row">
+  
+   <div id="detailBookmark" class="col-md-9 col-sm-9 ">
+      <div class="row">
+
+         <div class="panel panel-default ">
+            <div class="panel-body">
+               <span class="glyphicon glyphicon-bookmark"></span>
+               <span class="titleBookmark">
+                  {{ bookmarkInfo.title }}
+               </span>
+               <br>
+               <small>
+                  <i>
+                     By {{ bookmarkInfo.name }}
+                     <span> {{ bookmarkInfo.created }}</span>
+                  </i>
+               </small>
+            </div>
+            <div class="panel-footer actionsBookmark">
+               <button type="button" class="btn btn-default btn-xs" ng-click="showAddLinkForm()">
+                  <span class="glyphicon glyphicon-plus"></span>
+                  Add link to bookmark
+               </button>
+               <button type="button" class="btn btn-default btn-xs" ng-if="bookmarkInfo.description != ''"  
+                ng-click="showDescriptionBookmark()">
+                 <span class="glyphicon glyphicon-comment"></span> 
+                 About
+               </button> 
+
+               <button  popover="{{ popoverWatch.content }}" 
+               popover-title="{{ popoverWatch.title }}" popover-trigger="mouseenter" 
+               type="button" class="btn btn-default btn-xs" ng-click="watchBookmark()">
+                  <span class="glyphicon" ng-class="{'glyphicon-eye-open' : !popoverWatch.alreadyWatch ,
+                   'glyphicon-eye-close' :popoverWatch.alreadyWatch }"></span>
+                  Watch                  
+               </button>
+
+            </div>
+         </div>
+
+      </div>
+
+      <div class="row">
+         <ul class="list-unstyled">
+            <li class="itemLinkOnBookmarkGrid" ng-repeat="link in bookmarkInfo.links" 
+              set-color-link-grid>
+
+               <div class="titleLink">
+                  <img class="faviconLink" ng-src="http://g.etfv.co/{{ link.link }}" width="16" height="16" 
+                  crossorigin="anonymous" />
+                  <a  ng-href="{{ link.link }}" target="_blank">
+                     {{ link.title }}
+                  </a>
+               </div>   
+               
+               <div class="linkItself">
+                  <span class="glyphicon glyphicon-link"></span>
+                  {{ link.link }} - <em>
+                      By {{ link.userName }}
+                      <span>{{ link.created }}</span>
+                    </em>    
+               </div> 
+            
+               <div class="text-center">
+                  <div class="btn-group btn-group-xs">
+                     <button type="button" class="btn btn-default" ng-click="voteLink(1,link.id,$index)">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        {{ link.likes }}
+                     </button>
+                     <button type="button" class="btn btn-default" ng-click="voteLink(0,link.id,$index)">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                        {{ link.noLikes }}
+                     </button>
+                     <button type="button" class="btn btn-default" ng-if="link.comment != ''"
+                         ng-click="showCommentLink($index)">
+                         <span class="glyphicon glyphicon-comment"></span>
+                     </button> 
+                     <button type="button" ng-click="showReportLink($index)" class="btn btn-default">
+                        Report
+                     </button>
+                  </div>
+               </div>              
+            </li>
+         </ul>
+      </div>
+
+   </div>
+
+   <div class="col-md-3 col-sm-3 hidden-xs noPaddingBootstrap">
+      <div class="row text-center">
+        <h4>Tags on bookmark <span class="glyphicon glyphicon-tags"></span></h4>
+      </div>
+      <div id="tagsContainer" class="row">
+        <ul class="list-unstyled">
+          <li ng-repeat="tag in bookmarkInfo.tags">
+            <span class="bookmarkTag label label-info">
+               {{ tag.name }}
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+         <!-- unitedBookmark -->
+         <ins class="adsbygoogle"
+              style="display:inline-block;width:300px;height:250px"
+              data-ad-client="ca-pub-5067790193708510"
+              data-ad-slot="3700204435"></ins>
+         <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+         </script>
+      </div>
+   </div>
+</div>

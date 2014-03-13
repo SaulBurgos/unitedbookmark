@@ -1,0 +1,27 @@
+
+
+<div class="modal-header">
+   <h4 class="modal-title"> {{ modalContent.title }} </h4>
+</div>
+<div class="modal-body">
+   <div class="alert alert-info">
+      Use this report to notify us about a broken link that is not working anymore
+   </div>
+   <form role="form" name="reportLinkForm" ng-submit="reportLink()">
+      <div class="form-group">
+         <label>Additional (300) Optional</label>
+         <textarea class="form-control" rows="3"  
+             placeholder="Description" ng-maxlength="300" ng-model="modalContent.commentReportLink" 
+             check-Limit-Characters onpaste="return false;" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success" ng-if="isThereSession()">Send Report</button>
+   </form>
+   <div ng-if="!isThereSession()" class="alert alert-info">
+      You must to be logged to report a link.
+   </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default btn-sm" ng-click="closeModal()">Close</button>
+</div>
+
+

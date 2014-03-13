@@ -1,0 +1,46 @@
+
+<div class="row"> 
+
+   <div class="col-md-9 col-sm-9">
+      <div ng-class="{'alert alert-danger' : msg.error , 'alert alert-success' : msg.success }">
+         {{ msg.text }}
+      </div>
+      <div id="bookmarkGrid"></div> 
+      <!--<tabset>
+         <tab heading="Your bookmarks" ng-click="loadBookmarks();">
+            content
+         </tab>
+         <tab heading="other tab">
+            other content
+         </tab>
+         <tab heading="Static title3">
+          Static content 3
+         </tab>
+         <tab heading="Static title4">
+          Static content 4
+         </tab>
+      </tabset>-->
+
+      <div>
+         <h3 id="titleBookmark"></h3>
+         <div id="linkGrid"></div> 
+      </div>
+
+   </div>
+
+   <div class="col-md-3 col-sm-3 hidden-xs">
+      <div class="panel panel-default">
+         <div class="panel-heading text-center">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            Tips
+         </div>
+         <div class="panel-body" style="text-align:justify;">
+            <p>
+               Here you can edit your bookmarks. Also remove links that you consider not appropriate that were added by others users.
+               Just select the bookmark that you want and with button "View links" you can see them below of the first grid.
+            </p>
+         </div>
+      </div> 
+   </div>
+</div>
+

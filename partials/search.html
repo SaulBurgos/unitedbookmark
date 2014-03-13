@@ -1,0 +1,27 @@
+
+<div class="row">  
+	<div id="bookmarkList" class="col-md-10 col-sm-10">
+
+		<div class="row">
+			<h4>
+				<span class="glyphicon glyphicon-globe"></span>
+				Result of your search 
+			</h4>
+		</div>
+      
+		<ng-include src="'partials/fragments/bookmark.html'"></ng-include>
+
+		<div class="row text-center" ng-show="bookmarksArray.length > 0">
+		   <button type="button" class="btn btn-primary btn-sm" ng-click="loadMore();">
+		      View more
+		     <span class="glyphicon glyphicon-chevron-down"></span>
+		   </button>         
+		</div>
+      
+		<div class="alert alert-info" ng-show="noResultFound">
+      		No result found （￣□￣；）. Maybe does not exist a bookmark with that title. Hey... you can add it and help our community!! （⌒▽⌒）
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,120 @@
+
+<div id="shareBookmarkContainer" class="row">
+  
+	<div  class="col-md-9 col-sm-9">
+		<form role="form" name="shareBookmarkForm" ng-submit="saveBookmark()" ng-hide="bookmarkSaved">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					 <span class="glyphicon glyphicon-bookmark"></span>
+					 Your bookmark
+				 </div>
+				<div class="panel-body">
+					
+					<div class="form-group" ng-class="isValid(shareBookmarkForm.titleBookmark)">
+						<label>Descriptive title at least 20 characters</label>
+						<input type="text" name="titleBookmark" class="form-control" 
+						placeholder="Title bookmark" ng-model="bookmark.title" required ng-minlength="20">
+					</div>
+
+					<div class="form-group">
+						<label>Some description (300 max) optional</label>
+						<textarea class="form-control" rows="3" name="descriptionBookmark" 
+						 placeholder="Description" ng-maxlength="300" ng-model="bookmark.description" 
+						 check-Limit-Characters onpaste="return false;" ></textarea>
+					</div>
+
+					<div class="form-group">
+						<label>Add Tags (categories of your bookmark)</label>
+						<tags-input ng-model="bookmark.tags"  placeholder="tags separated by commas" 
+						 add-On-Space="true" max-Length="25">
+							 <auto-complete source="getTags($query)" debounce-Delay="500"></auto-complete>
+						</tags-input>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				 <div class="panel-heading">
+					 <span class="glyphicon glyphicon-link"></span>
+					 Add a link
+				 </div>
+				 <div class="panel-body">
+					 <div class="form-group" ng-class="isValid(shareBookmarkForm.link)">
+						 <label>Link for this bookmark - http://,https://, etc.</label>
+						 <input type="url" class="form-control" ng-model="bookmark.link" name="link" 
+						 placeholder="Write a link http://" ng-keyup="linkInUsed(shareBookmarkForm.link)" required>
+
+						<div class="alert alert-info" style="padding:4px;" ng-show="linkDuplicate.showMsg">
+	                        <small>
+	                           This link was used in another bookmark on this 
+	                           <a ng-href="#/detail/{{linkDuplicate.bookmarkid}}" target="_blank">
+	                              <b>link</b>
+	                           </a>, but dont worry you can reuse it. ( ´ ▽ ` )ﾉ
+	                        </small>
+	                     </div>
+	                     
+					 </div>
+					 <div class="form-group">
+							<label>Comment about this link (300 max) optional</label>
+					 		<textarea class="form-control" rows="3" ng-model="bookmark.linkComment" 
+						  ng-maxlength="300" name="linkComment" placeholder="comment" check-Limit-Characters 
+						   onpaste="return false;" ></textarea>
+					 </div>
+				 </div>
+			 </div>
+
+			<div class="row text-center">
+				<div ng-if="!isThereSession()" class="alert alert-info">You must be logged to share a bookmark.</div>
+				<button ng-if="isThereSession()" ng-disabled="ajaxProgress" ng-hide="bookmarkSaved" type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-cloud-upload"></span>
+					Share Bookmark
+				</button>
+			</div>
+		</form>
+
+		<div class="row text-center">
+			<div ng-class="{'alert alert-danger' : msg.error , 'alert alert-success' : msg.success }">
+				{{ msg.text }}
+				<button type="button" class="btn btn-default btn-sm" ng-show="bookmarkSaved" ng-click="resetForm()">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+					Add another bookmark
+				</button>
+			</div>
+		</div>      
+
+	</div>
+
+  <div class="col-md-3 col-sm-3 hidden-xs noPaddingBootstrap">
+		<div class="panel panel-default">
+		  <div class="panel-heading text-center">
+				 <span class="glyphicon glyphicon-info-sign"></span>
+				Tips
+			</div>
+		  <div class="panel-body" style="text-align:justify;">
+				<p>
+					<b>Bookmark title:</b> Try to write a title very descriptive, at least more than 2 words. The title should 
+					encourage others users to add links to your bookmark. Ex: if you have a title like "recipe of my grandmother to prepare a sandwich", that title doesn't allow others users to add links because you are being specific of your grandmother's recipe. Instead you can write a title like "recipes of tasty sandwiches", that title allow others 
+					user to add links about others recipes to your bookmark.
+
+				</p>
+				<p>
+					<b>Description:</b>
+					You can add a description trying to explain what is the reason of your bookmark or tell others users what links you want to be added.
+				</p>
+				<p>
+					<b>Tags:</b>
+					This helps to describe your bookmark and allows it to be found again by searching. Is very important that you assign tags according to bookmark's topic. <a href="http://en.wikipedia.org/wiki/Tag_(metadata)" target="_blank">Tags</a> allow us categorize your bookmark using simple keywords and allows visitors to choose these tags to filter bookmarks when they are doing a search.
+				</p>
+				<p>
+					<b>Link:</b>
+					Link should begin with: http://, https://, etc. You can't add a link like this: "www.google.com","google.com"
+				</p>
+				<p>
+					<b>Comment link:</b>
+					Any comment that you have about this link.
+				</p>
+		  </div>
+		</div> 
+  </div>
+</div>

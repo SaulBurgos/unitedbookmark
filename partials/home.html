@@ -1,0 +1,49 @@
+
+<div class="row">  
+  <div id="bookmarkList" class="col-md-9 col-sm-9">
+
+      <div class="row">
+         <h4>
+            <span class="glyphicon glyphicon-globe"></span>
+            Recent bookmarks shared by users
+         </h4>
+      </div>
+      
+      <ng-include src="'partials/fragments/bookmark.html'"></ng-include>
+
+      <div class="row text-center">
+         <button type="button" class="btn btn-primary btn-sm" ng-click="loadMore();">
+            View more
+           <span class="glyphicon glyphicon-chevron-down"></span>
+         </button>         
+      </div>
+
+   </div>
+
+   <div class="col-md-3 col-sm-3 hidden-xs noPaddingBootstrap">
+      
+      <div class="row text-center">
+         <h4>Recent tags</h4>
+      </div>
+      <div id="tagsContainer" class="row">
+         <ul class="list-unstyled">
+            <li ng-repeat="tag in recentTags">
+               <span class="bookmarkTag label label-info">
+                  {{tag.name}}
+               </span>
+            </li>
+         </ul>
+      </div>
+      <div class="row">
+         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+         <!-- unitedBookmark -->
+         <ins class="adsbygoogle"
+              style="display:inline-block;width:300px;height:250px"
+              data-ad-client="ca-pub-5067790193708510"
+              data-ad-slot="3700204435"></ins>
+         <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+         </script>
+      </div>
+   </div>
+</div>

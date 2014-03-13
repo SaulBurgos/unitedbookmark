@@ -1,0 +1,66 @@
+<div class="center-block" style="max-width:400px;">
+
+   <div ng-hide="isThereSession()">
+      <tabset>
+         <tab heading="Login">
+            <form id="loginForm" role="form" name="loginForm" ng-submit="loginUser()" class="well well-sm">
+               <div class="form-group" ng-class="isValid(loginForm.email)">
+                  <label>Email address</label>
+                  <input type="email" name="email" class="form-control" 
+                  placeholder="Enter email" ng-model="loginData.email" required/>
+               </div>
+               <div class="form-group" ng-class="isValid(loginForm.pass)">
+                  <label>Password</label>
+                  <input type="password" name="pass" class="form-control" 
+                  placeholder="Password" ng-model="loginData.pass" required />
+               </div>
+               <button type="submit" class="btn btn-default">
+                     Submit
+               </button>
+            </form>
+         </tab>
+         <tab heading="Register">
+            <form id="registerForm" role="form" name ="registerForm" ng-submit="registerUser()" class="well well-sm">
+               <div class="form-group" ng-class="isValid(registerForm.name)">
+                  <label>Username</label>
+                  <input type="text" name="name" class="form-control" 
+                  placeholder="userName" ng-model="userData.name" required/>
+               </div>
+               <div class="form-group" ng-class="isValid(registerForm.email)">
+                  <label>Email address</label>
+                  <input type="email" name="email" class="form-control" 
+                  placeholder="Enter email" ng-model="userData.email" required/>
+               </div>
+               <div class="form-group" ng-class="isSamePass(registerForm.pass1,registerForm.pass2)">
+                  <label>Password</label>
+                  <input type="password" name="pass1" class="form-control" 
+                  placeholder="Password" ng-model="userData.pass1" required />
+               </div>
+               <div class="form-group" ng-class="isSamePass(registerForm.pass1,registerForm.pass2)">
+                  <label>Repeat password</label>
+                  <input type="password" name="pass2" class="form-control" 
+                  placeholder="Repeat password" ng-model="userData.pass2" required/>
+               </div>
+               <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="human" ng-model="human" required> Are you human ?
+                  </label>
+               </div>
+               <button type="submit" class="btn btn-default">
+                     Submit
+               </button>
+            </form>
+         </tab>
+      </tabset>
+      <div ng-class="{'alert alert-danger' : msg.error , 'alert alert-success' : msg.success }">{{ msg.text }}</div>
+   </div>
+
+   <!-- <button type="button" class="btn btn-default" ng-click="loadSession()">
+      load session
+   </button>
+   
+   <button type="button" class="btn btn-default" ng-click="logOut()">
+      log out
+   </button> -->
+
+</div>
