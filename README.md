@@ -53,12 +53,13 @@ In overall you can publish any content that you want.
 
 Hello stranger…. there are some causes why you are not receiving results of this tool.
 
-It does not exist a bookmark with that title.
-This site is relatively new... so we don't have so much content to share.
-You must write a good term to search, it’s not going to work with simply “Dog”, you should write more than 2 words. It could work. Ex: “Dog running on the beach”.
-Are you using the filter by tag ?
-I am not Google, I can't find results like them :(.
-I finally, I know that sometimes the search tool is not working well, I am working to fix that. It's a little complicate to do it, so I need some help with the SQL query. If you are an expert on SQL queries maybe you can help me to improve this search tool, send me a email to : info@saulburgos.com.
+* It does not exist a bookmark with that title.
+* This site is relatively new... so we don't have so much content to share.
+* You must write a good term to search, it’s not going to work with simply “Dog”, you  should write more than 2 words. It could work. Ex: “Dog running on the beach”.
+* Are you using the filter by tag ?
+* I am not Google, I can't find results like them :(.
+
+finally, I know that sometimes the search tool is not working well, I am working to fix that. It's a little complicate to do it, so I need some help with the SQL query. If you are an expert on SQL queries maybe you can help me to improve this search tool, send me a email to : info@saulburgos.com.
 
 ###What is the state of United Bookmark ?
 
