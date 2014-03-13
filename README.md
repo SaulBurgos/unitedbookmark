@@ -65,8 +65,9 @@ finally, I know that sometimes the search tool is not working well, I am working
 
 United bookmark is in beta phase. That means :
 
-Is an unfinished product.
-Contain a lot of errors.
-I am working to improve some features.
-The interface and colors may change in the future.
-If you find a error, I will be glad if you send me an email telling me about it to info@saulburgos.com
+* Is an unfinished product.
+* Contain a lot of errors.
+* I am working to improve some features.
+* The interface and colors may change in the future.
+
+If you find a errors or you want help me to improve this project, I will be glad if you send me an email telling me about it to info@saulburgos.com 
