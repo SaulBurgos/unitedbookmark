@@ -4,7 +4,7 @@
    <meta name="fragment" content="!" />
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>United Bookmarks - share your bookmarks with the people</title>
+   <title>Register User - United Bookmarks</title>
    <meta name="description" content="Save your bookmarks in one place and share them with the world,
    You can share valuable links that you consider important with others users and help to keep the knowledge accessible">
    <meta name="keywords" content="bookmark,links,share bookmark">

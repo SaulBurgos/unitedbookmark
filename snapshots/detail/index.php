@@ -1,10 +1,76 @@
+<?php
+
+require_once('../../php/db_connect.php');
+require_once('../../php/utilities.php');
+/*require_once('underscore.php');*/
+
+@ $mysqli = conect_db();
+@ session_start();
+
+$respond = array();
+
+if (mysqli_connect_errno()) {
+   $respond['status'] = 'error';
+   $respond['msg'] = 'imposible conect to DB';
+   echo json_encode($respond);   
+}
+
+require_once('../../php/classes/bookmarks.php');       
+require_once('../../php/classes/tags.php');
+require_once('../../php/classes/links.php');
+
+$tag = new Tags($mysqli);
+$bookmark = new Bookmarks($mysqli);
+$link = new Links($mysqli);   
+
+$objData = new StdClass();
+$objData->id = $_GET['id'];
+
+$bookmarkInfo = $bookmark->getById($objData);
+
+if($bookmarkInfo['status'] == 'ok') {
+   
+   $bookmarkLinksInfo = $bookmark->getLinks($objData);
+
+   foreach ($bookmarkLinksInfo['data'] as $key => $value) {
+      //get like by linkId and bookmarkId
+      $likesLink = $link->getLikesByLinkIdAndBookmarkId(
+         $bookmarkLinksInfo['data'][$key]['id'],
+         $bookmarkInfo['data']['id']
+      );
+
+      //get nolike by linkId and bookmarkId
+      $nolikesLink = $link->getNoLikesByLinkIdAndBookmarkId(
+         $bookmarkLinksInfo['data'][$key]['id'],
+         $bookmarkInfo['data']['id']
+      );
+      //assign values to current link
+      $bookmarkLinksInfo['data'][$key]['likes'] = $likesLink;
+      $bookmarkLinksInfo['data'][$key]['noLikes'] = $nolikesLink;
+   }
+
+   /*check if user logged is watching this bookmark*/
+   if(isset($_SESSION['userId'])) {
+      $isWatch =  $bookmark->isAlreadyWatch($_SESSION['userId'],$bookmarkInfo['data']['id']);               
+      $bookmarkInfo['data']['alreadyWatch'] =  $isWatch;
+   } else {
+      $bookmarkInfo['data']['alreadyWatch'] =  'false';
+   }
+
+   $bookmarkTagsInfo = $bookmark->getTags($objData);
+   $bookmarkInfo['data']['links'] = $bookmarkLinksInfo['data'];            
+   $bookmarkInfo['data']['tags'] = $bookmarkTagsInfo['data'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta name="fragment" content="!" />
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>United Bookmarks - share your bookmarks with the people</title>
+   <title><?php echo $bookmarkInfo['data']['title'];  ?> - United Bookmarks</title>
    <meta name="description" content="Save your bookmarks in one place and share them with the world,
    You can share valuable links that you consider important with others users and help to keep the knowledge accessible">
    <meta name="keywords" content="bookmark,links,share bookmark">
@@ -89,67 +155,6 @@
    <div ng-view>
 
    <?php
-      require_once('../../php/db_connect.php');
-      require_once('../../php/utilities.php');
-      /*require_once('underscore.php');*/
-
-      @ $mysqli = conect_db();
-      @ session_start();
-
-      $respond = array();
-
-      if (mysqli_connect_errno()) {
-         $respond['status'] = 'error';
-         $respond['msg'] = 'imposible conect to DB';
-         echo json_encode($respond);   
-      }
-
-      require_once('../../php/classes/bookmarks.php');       
-      require_once('../../php/classes/tags.php');
-      require_once('../../php/classes/links.php');
-
-      $tag = new Tags($mysqli);
-      $bookmark = new Bookmarks($mysqli);
-      $link = new Links($mysqli);   
-
-      $objData = new StdClass();
-      $objData->id = $_GET['id'];
-
-      $bookmarkInfo = $bookmark->getById($objData);
-
-      if($bookmarkInfo['status'] == 'ok') {
-         
-         $bookmarkLinksInfo = $bookmark->getLinks($objData);
-
-         foreach ($bookmarkLinksInfo['data'] as $key => $value) {
-            //get like by linkId and bookmarkId
-            $likesLink = $link->getLikesByLinkIdAndBookmarkId(
-               $bookmarkLinksInfo['data'][$key]['id'],
-               $bookmarkInfo['data']['id']
-            );
-
-            //get nolike by linkId and bookmarkId
-            $nolikesLink = $link->getNoLikesByLinkIdAndBookmarkId(
-               $bookmarkLinksInfo['data'][$key]['id'],
-               $bookmarkInfo['data']['id']
-            );
-            //assign values to current link
-            $bookmarkLinksInfo['data'][$key]['likes'] = $likesLink;
-            $bookmarkLinksInfo['data'][$key]['noLikes'] = $nolikesLink;
-         }
-
-         /*check if user logged is watching this bookmark*/
-         if(isset($_SESSION['userId'])) {
-            $isWatch =  $bookmark->isAlreadyWatch($_SESSION['userId'],$bookmarkInfo['data']['id']);               
-            $bookmarkInfo['data']['alreadyWatch'] =  $isWatch;
-         } else {
-            $bookmarkInfo['data']['alreadyWatch'] =  'false';
-         }
-
-         $bookmarkTagsInfo = $bookmark->getTags($objData);
-         $bookmarkInfo['data']['links'] = $bookmarkLinksInfo['data'];            
-         $bookmarkInfo['data']['tags'] = $bookmarkTagsInfo['data'];
-      }
 
       echo '<div class="panel panel-default ">
             <div class="panel-body">
