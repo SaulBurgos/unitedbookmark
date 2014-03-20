@@ -121,12 +121,17 @@ class Links {
     }
 
     public function getTitle($data) {
+
     	$html = $this->getContentFromUrl($data->link);
+    	//treat utf-8 coding
+		$searchPage = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8"); 
+    	
     	//parsing begins here:
 		$doc = new DOMDocument();
-		@$doc->loadHTML($html);
+		@$doc->loadHTML($searchPage);
+
 		$nodes = $doc->getElementsByTagName('title');
-		$linkNodes = $doc->getElementsByTagName('link');
+		/*$linkNodes = $doc->getElementsByTagName('link');*/
 
 		$titleLink = '';
 

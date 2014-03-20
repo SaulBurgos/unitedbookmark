@@ -224,6 +224,7 @@
 			echo json_encode($bookmarkInfo);
         break;
         case "addLinkTobookmark":
+
         	require_once('classes/bookmarks.php');			
     		require_once('classes/links.php');
 
