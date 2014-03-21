@@ -36,7 +36,7 @@ angular.module('myApp.controllers', [])
 			console.log('A session was destroyed');
 			//clear cache used for partial view, but appear a weird error when you change of route
 			//$templateCache.removeAll();
-		});		
+		});	
 
   		$scope.loadSession = function() {
 			$scope.userServices.getSession().success(function (respond) {
@@ -785,8 +785,10 @@ angular.module('myApp.controllers', [])
          dont let me using it*/
          angular.element('#titleBookmark').html('<span class="glyphicon glyphicon-bookmark"></span> ' +
           $scope.bookmarkSelected.title);
-         $location.hash('titleBookmark');//to scroll down the page
-         $anchorScroll();
+
+         //this is provoking the error when you delete a link check later
+         //$location.hash('titleBookmark');//to scroll down the page
+         //$anchorScroll();
 
          var linkGrid = angular.element("#linkGrid");
          linkGrid.kendoGrid({
