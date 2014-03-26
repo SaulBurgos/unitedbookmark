@@ -13,9 +13,12 @@
          <div class="panel-body">                  
             <div class="form-group">
                <label>Link to add - http://</label>
-               <input type="url" class="form-control" name="link" 
+               <!-- <input type="url" class="form-control" name="link" 
                 placeholder="Write a link http://" ng-keyup="linkInUsed(addlinkToBookmarkForm.link)" 
-               ng-model="linkData.link" required>
+               ng-model="linkData.link" required> -->
+
+               <textarea class="form-control" rows="3" ng-model="linkData.link" 
+                 ng-maxlength="300" name="link" placeholder="Write a link http://" ></textarea>
 
                <div class="alert alert-info" style="padding:4px;" ng-show="linkDuplicate.showMsg">
                   <small>
